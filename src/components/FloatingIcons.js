@@ -1,28 +1,38 @@
 import { motion } from "framer-motion";
-import { FaHtml5, FaCss3Alt, FaJs } from "react-icons/fa";
+import { HiSparkles } from "react-icons/hi";
 
 export default function FloatingIcons() {
+  const floatingAnimation = {
+    y: [0, -60, 0],
+    x: [0, 20, -20, 0],
+    opacity: [0.2, 0.8, 0.2],
+    scale: [0.6, 1, 0.6],
+  };
+
   return (
-    <div className="floating-container">
-
-      <motion.div className="floating-icon" style={{ top:"20%", left:"10%", color:"#e34c26", fontSize: "80px" }}
-        animate={{ y:[0,-30,0] }} transition={{ duration:6, repeat:Infinity }}>
-        <FaHtml5/>
-      </motion.div>
+    <div className="floating-container" style={{ position: "absolute", width: "100%", height: "100%" }}>
       
-       <motion.div className="floating-icon" style={{ top:"40%", left:"90%", color:"#e34c26" , fontSize: "80px"}}
-        animate={{ y:[0,-80,0] }} transition={{ duration:6, repeat:Infinity }}>
-        <FaHtml5/>
-      </motion.div>
-
-      <motion.div className="floating-icon" style={{ top:"20%", left:"60%", color:"#264de4", fontSize: "80px" }}
-        animate={{ y:[0,-40,0] }} transition={{ duration:7, repeat:Infinity }}>
-        <FaCss3Alt/>
-      </motion.div>
-      <motion.div className="floating-icon" style={{ top:"60%", left:"30%", color:"#f0db4f", fontSize: "80px" }}
-        animate={{ y:[0,-35,0] }} transition={{ duration:5, repeat:Infinity }}>
-        <FaJs/>
-      </motion.div>
+      {[...Array(40)].map((_, i) => (  
+        <motion.div
+          key={i}
+          className="floating-icon"
+          style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            color: "#ebe0dd",
+            position: "absolute",
+          }}
+          animate={floatingAnimation}
+          transition={{
+            duration: 3 + Math.random() * 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+        
+          <HiSparkles size={6 + Math.random() * 6} />
+        </motion.div>
+      ))}
 
     </div>
   );

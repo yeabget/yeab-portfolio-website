@@ -1,19 +1,19 @@
 import { motion } from "framer-motion";
-import profile from "../assets/port.jpg";
+import profile from "../assets/port.png";
 import cvFile from "../assets/yeab cv.pdf";
 export default function Hero() {
   return (
     <section id="home" className="hero">
       <div className="hero-container">
 
-        {/* IMAGE */}
         <motion.div
           className="hero-image"
           initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.img
+          transition={{ duration: 1 }}>
+         <div className="border-1">
+          
+          <img
             src={profile}
             alt="profile"
             animate={{
@@ -25,22 +25,24 @@ export default function Hero() {
               repeat: Infinity
             }}
           />
+          
+          </div>
         </motion.div>
 
-        {/* TEXT */}
+       
         <motion.div
-          className="hero-text"
+          className="hero-text "
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          <motion.h1
+          <motion.h1 className="gradient-text"
             animate={{ opacity: [0, 1] }}
             transition={{ duration: 2 }}
           >
             Hi, I'm Yeabsira 
           </motion.h1>
-          <h3 className="gradient-text">Frontend website developer</h3>
+          <h3 >Frontend website developer</h3>
           <p>
             I craft modern, responsive, and high-performance web interfaces.
             I turn ideas into smooth, interactive user experiences.

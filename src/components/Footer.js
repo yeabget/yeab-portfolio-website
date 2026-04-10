@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="footer-content">
 
         <div className="footer-about">
-          <h3 className="gradient-text">YEAB 💖</h3>
+          <h3 className="gradient-text">YEAB </h3>
           <p>
             Creative Frontend Developer crafting beautiful and interactive web experiences.
           </p>

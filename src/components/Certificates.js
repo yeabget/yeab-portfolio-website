@@ -1,9 +1,7 @@
-
 import cert1Img from "../assets/cert1.jpg";
 import cert2Img from "../assets/cert2.jpg";
 import cert3Img from "../assets/cert3.jpg";
 import cert4Img from "../assets/cert4.jpg";
-
 import cert1PDF from "../assets/cert1PDF.pdf";
 import cert2PDF from "../assets/cert2PDF.pdf";
 import cert3PDF from "../assets/cert3PDF.pdf";
@@ -19,7 +17,7 @@ export default function Certificates() {
 
   return (
     <section id="certificates">
-      <h2 className="gradient-text">Certificates </h2>
+      <h1 className="gradient-text">Certificates </h1>
 
       <div className="cert-container">
         {certificates.map((cert, index) => (

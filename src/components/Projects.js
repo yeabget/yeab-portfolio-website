@@ -1,31 +1,43 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ImageGallery from "react-image-gallery";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import addis from "../assets/addis.jpg";
+import fluent from "../assets/fluent.jpg";
+import tigat from "../assets/tigat.jpg";
 
-import amrogn from "../assets/amro.jpg";
-import deby from "../assets/db.jpg";
-import cbe from "../assets/et.jpg";
-import kids from "../assets/kid.jpg";
-import tesfaye from "../assets/tesfaye.jpg";
-import ahadu from "../assets/ahadu.jpg";
-import hawassa from "../assets/k1.jpg";
 export default function Projects() {
   const [isOpen, setIsOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
 
+  const containerRef = useRef(null);
+
   const projects = [
-    { title: "Amrogn chicken Website clone", desc: "React commercial Website", image: amrogn },
-    { title: "Debby Architectural Design Website", desc: "Responsive Design", image: deby },
-    { title: "CBE website clone", desc: "Commercial Bank of Ethiopia website", image: cbe },
-    { title: "Tesfaye penut butter Website clone", desc: "React commercial Website", image: tesfaye },
-    { title: "Kids Fun zone", desc: "interative website which includes problem solving game,quiz app, movie recommendation for kids", image: kids },
-    { title: "Ahadu supermarket", desc: "commercial website", image: ahadu },
-     { title: "Hawassa Architectural design company website", desc: "commercial website", image: hawassa },
+    {
+      title: "Addis Mart Landing Page",
+      desc: "React js website",
+      image: addis,
+      live: "https://addissupermarket.netlify.app/",
+      code: "https://github.com/yeabget/Addis-supermarket",
+    },
+    {
+      title: "Fluent online Courses",
+      desc: "React js website",
+      image: fluent,
+      live: "https://fluent-online-courses.netlify.app/",
+      code: "https://github.com/yeabget/fluent-online-courses",
+    },
+    {
+      title: "Tigat online Courses",
+      desc: "React js website",
+      image: tigat,
+      live: "https://tigat-onlinelearnin-platform.netlify.app/",
+      code: "https://github.com/yeabget/Tigat-Online-learning-platform",
+    },
   ];
 
-  const images = projects.map((project) => ({
-    original: project.image,
-    thumbnail: project.image,
-    description: project.title,
+  const images = projects.map((p) => ({
+    original: p.image,
+    thumbnail: p.image,
   }));
 
   const openGallery = (index) => {
@@ -33,26 +45,76 @@ export default function Projects() {
     setIsOpen(true);
   };
 
+  /* BUTTON SCROLL ONLY */
+  const scrollNext = () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const card = container.querySelector(".project-card");
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth + 20;
+
+    container.scrollBy({
+      left: cardWidth,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollPrev = () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const card = container.querySelector(".project-card");
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth + 20;
+
+    container.scrollBy({
+      left: -cardWidth,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section id="projects">
-      <h2 className="gradient-text">Projects</h2>
+      <h1 className="gradient-text">Projects</h1>
 
-      <div className="projects-container">
+      {/* PROJECTS */}
+      <div className="projects-container" ref={containerRef}>
         {projects.map((project, index) => (
           <div className="project-card" key={index}>
             <img
+          
               src={project.image}
               alt={project.title}
-              onClick={() => openGallery(index)} /* click image to open gallery */
-              style={{ cursor: "pointer" }}
+              onClick={() => openGallery(index)}
             />
 
             <div className="overlay">
               <h3>{project.title}</h3>
               <p>{project.desc}</p>
+
+              <div className="buttons">
+                <a href={project.live} target="_blank" rel="noreferrer" className="live-btn">
+                  Live
+                </a>
+                <a href={project.code} target="_blank" rel="noreferrer" className="code-btn">
+                  Code
+                </a>
+              </div>
             </div>
           </div>
         ))}
+      </div>
+     
+      <div className="slider-controls">
+        <button onClick={scrollPrev} className="nav-btn">
+          <IoChevronBack size={22} />
+        </button>
+        <button onClick={scrollNext} className="nav-btn">
+          <IoChevronForward size={22} />
+        </button>
       </div>
 
       {isOpen && (
@@ -65,7 +127,6 @@ export default function Projects() {
             <ImageGallery
               items={images}
               startIndex={startIndex}
-              showThumbnails={true}
               showPlayButton={false}
               showFullscreenButton={false}
             />

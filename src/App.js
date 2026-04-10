@@ -7,18 +7,21 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Journey from "./components/Journey";
 import Certificates from "./components/Certificates";
+import Skills from "./components/Skills";
 
 function HomePage() {
+  const [register,setRegister]=useState(false)
   return (
+    
     <>
       <Hero />
       <About />
       <Journey/>
+      <Skills/>
       <Certificates/>
       <Projects />
       <Contact />
